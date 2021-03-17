@@ -2,8 +2,9 @@
   "name": "esbuild-plugin-stimulus",
   "version": "0.1.0",
   "description": "esbuild plugin for automatically loading Stimulus controllers from a folder",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "type": "commonjs",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "scripts": {
     "build": "tsc --build tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
