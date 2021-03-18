@@ -42,6 +42,14 @@ jobs:
       uses: actions/setup-node@v2
       with:
         registry-url: "https://npm.pkg.github.com"
+    - name: Change package.json scope for GitHub Packages
+      run: |
+        name="@${OWNER}/esbuild-plugin-stimulus"
+        echo "Setting package name to $name"
+        jq ".name = \"$name\"" package.json > package.json.new
+        mv package.json.new package.json
+      env:
+        OWNER: ${{ github.repository_owner }}
     - name: Publish to GitHub Packages
       run: npm publish
       env:
