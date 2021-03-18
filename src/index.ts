@@ -22,7 +22,7 @@ import * as path from 'path';
 import { readdir } from 'fs';
 import { promisify } from 'util';
 
-export const stimulusPlugin: Plugin = {
+export const stimulusPlugin = (): Plugin => ({
   name: 'stimulus',
   setup(build) {
     const namespace = 'stimulus_ns';
@@ -90,4 +90,4 @@ export const stimulusPlugin: Plugin = {
       };
     });
   },
-};
+});
