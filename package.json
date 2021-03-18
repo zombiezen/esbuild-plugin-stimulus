@@ -19,6 +19,10 @@
     "stimulus"
   ],
   "author": "Ross Light <ross@zombiezen.com>",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/zombiezen"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/zombiezen/esbuild-plugin-stimulus/issues"
