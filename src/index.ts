@@ -53,7 +53,7 @@ export const stimulusPlugin = (): Plugin => ({
           if (ent.isDirectory()) {
             result.push(...await walk(
               path.join(dir, ent.name),
-              prefix + ent.name + '--',
+              prefix + ent.name.replace(/_/g, '-') + '--',
               moduleDir + '/' + ent.name,
             ));
             continue;
