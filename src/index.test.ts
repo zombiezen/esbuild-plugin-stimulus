@@ -44,7 +44,9 @@ const listDefinitions = async (files: Record<string, string>): Promise<Array<{id
   `);
   for (const fname in files) {
     if (files.hasOwnProperty(fname)) {
-      await fs.writeFile(path.join(workDir, fname), files[fname]);
+      const fullPath = path.join(workDir, fname.replace(/\//g, path.sep));
+      await fs.mkdir(path.dirname(fullPath), {recursive: true});
+      await fs.writeFile(fullPath, files[fname]);
     }
   }
 
@@ -92,4 +94,34 @@ test('hyphens', async () => {
     'foo-bar-controller.js': 'export default class FooBar {}',
   });
   expect(got).toEqual([{identifier: 'foo-bar', className: 'FooBar'}]);
+});
+
+describe('directories', () => {
+  test('separate with two hyphens', async () => {
+    const got = await listDefinitions({
+      'foo/bar_controller.js': 'export default class FooBar {}',
+    });
+    expect(got).toEqual([{identifier: 'foo--bar', className: 'FooBar'}]);
+  });
+
+  test.skip('are walked recursively', async () => {
+    const got = await listDefinitions({
+      'foo/bar/baz_controller.js': 'export default class FooBarBaz {}',
+    });
+    expect(got).toEqual([{identifier: 'foo--bar--baz', className: 'FooBarBaz'}]);
+  });
+
+  test('pass through hyphens', async () => {
+    const got = await listDefinitions({
+      'foo-bar/baz_controller.js': 'export default class FooBarBaz {}',
+    });
+    expect(got).toEqual([{identifier: 'foo-bar--baz', className: 'FooBarBaz'}]);
+  });
+
+  test.skip('convert underscores to hyphens', async () => {
+    const got = await listDefinitions({
+      'foo_bar/baz_controller.js': 'export default class FooBarBaz {}',
+    });
+    expect(got).toEqual([{identifier: 'foo-bar--baz', className: 'FooBarBaz'}]);
+  });
 });
