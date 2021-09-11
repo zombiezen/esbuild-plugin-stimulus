@@ -104,7 +104,7 @@ describe('directories', () => {
     expect(got).toEqual([{identifier: 'foo--bar', className: 'FooBar'}]);
   });
 
-  test.skip('are walked recursively', async () => {
+  test('are walked recursively', async () => {
     const got = await listDefinitions({
       'foo/bar/baz_controller.js': 'export default class FooBarBaz {}',
     });
@@ -118,7 +118,7 @@ describe('directories', () => {
     expect(got).toEqual([{identifier: 'foo-bar--baz', className: 'FooBarBaz'}]);
   });
 
-  test.skip('convert underscores to hyphens', async () => {
+  test('convert underscores to hyphens', async () => {
     const got = await listDefinitions({
       'foo_bar/baz_controller.js': 'export default class FooBarBaz {}',
     });
