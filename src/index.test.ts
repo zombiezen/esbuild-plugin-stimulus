@@ -87,7 +87,7 @@ test('underscores', async () => {
   expect(got).toEqual([{identifier: 'foo-bar', className: 'FooBar'}]);
 });
 
-test.skip('hyphens', async () => {
+test('hyphens', async () => {
   const got = await listDefinitions({
     'foo-bar-controller.js': 'export default class FooBar {}',
   });
