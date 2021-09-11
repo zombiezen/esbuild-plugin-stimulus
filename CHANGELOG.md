@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Permit hyphens as part of controller suffix
   ([#3](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/3))
+- Use all parent components during directory recursion
+  ([#6](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/6))
+- Rewrite underscored directories to hyphens
+  ([#6](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/6))
 
 ## [0.1.0][] - 2021-03-17
 
