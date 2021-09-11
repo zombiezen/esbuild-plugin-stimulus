@@ -3,13 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-[Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.1...main
+[Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.2...main
 
-## [0.1.1][] - 2021-09-11
+## [0.1.2][] - 2021-09-11
 
-Version 0.1.1 fixes several bugs from the initial release.
+Version 0.1.2 fixes several bugs from the initial release.
 
-[0.1.1]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.1.1
+[0.1.2]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.1.2
 
 ### Fixed
 
@@ -19,6 +19,12 @@ Version 0.1.1 fixes several bugs from the initial release.
   ([#6](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/6))
 - Rewrite underscored directories to hyphens
   ([#6](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/6))
+
+## [0.1.1][] - 2021-09-11
+
+Version 0.1.1 was skipped due to an improper release.
+
+[0.1.1]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.1.1
 
 ## [0.1.0][] - 2021-03-17
 
