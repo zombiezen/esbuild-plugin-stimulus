@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2021 Ross Light
+ * Copyright 2021 The esbuild-plugin-stimulus Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,10 @@ export const stimulusPlugin = (): Plugin => ({
             ));
             continue;
           }
-          if (ent.name.endsWith('_controller.ts') || ent.name.endsWith('_controller.js')) {
+          if (ent.name.endsWith('_controller.ts') ||
+            ent.name.endsWith('_controller.js') ||
+            ent.name.endsWith('-controller.js') ||
+            ent.name.endsWith('-controller.ts')) {
             const controllerName = prefix + ent.name
               .substr(0, ent.name.length - '_controller.js'.length)
               .replace(/_/g, '-');

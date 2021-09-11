@@ -5,6 +5,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.0...main
 
+## [Unreleased][]
+
+### Fixed
+
+- Permit hyphens as part of controller suffix
+  ([#3](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/3))
+
 ## [0.1.0][] - 2021-03-17
 
 First public release.
