@@ -35,14 +35,17 @@ export NPM_CONFIG_USERCONFIG
   echo "registry=https://registry.npmjs.org/"
   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
   echo "@${OWNER}:registry=https://npm.pkg.github.com/"
-  echo "@${OWNER}://npm.pkg.github.com/:_authToken=$GITHUB_TOKEN"
+  echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN"
 } >> "$NPM_CONFIG_USERCONFIG"
 
+echo "** Building..." 1>&2
 npm install
 npm run build
 
+echo "** Publishing to NPM..." 1>&2
 npm publish "$@"
 
+echo "** Publishing to GitHub Packages..." 1>&2
 mv package.json package.json.bak
 trap 'mv package.json.bak package.json ; rm "$NPM_CONFIG_USERCONFIG"' EXIT
 scoped_name="@${OWNER}/esbuild-plugin-stimulus"
