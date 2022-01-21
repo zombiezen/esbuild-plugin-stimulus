@@ -23,34 +23,15 @@ jobs:
     name: Publish
     runs-on: ubuntu-18.04
     steps:
+    - name: Install Nix
+      uses: cachix/install-nix-action@v16
     - name: Check out code
       uses: actions/checkout@v2
-    - name: Configure Node.js for npm registry
-      uses: actions/setup-node@v2
-      with:
-        node-version: "14.x"
-        registry-url: "https://registry.npmjs.org"
-    - name: Install dependencies
-      run: npm install
-    - name: Bundle
-      run: npm run build
-    - name: Publish to npm
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Configure Node.js for GitHub Packages
-      uses: actions/setup-node@v2
-      with:
-        registry-url: "https://npm.pkg.github.com"
-    - name: Change package.json scope for GitHub Packages
-      run: |
-        name="@${OWNER}/esbuild-plugin-stimulus"
-        echo "Setting package name to $name"
-        jq ".name = \"$name\"" package.json > package.json.new
-        mv package.json.new package.json
+    - name: Publish
+      run: ./publish.sh
       env:
         OWNER: ${{ github.repository_owner }}
-    - name: Publish to GitHub Packages
-      run: npm publish
-      env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Store path obtained with:
+        # nix-store -qR "$(nix-build --no-out-link shell.nix)" | grep bash
+        NIX_BUILD_SHELL: /nix/store/pbfraw351mksnkp2ni9c4rkc9cpp89iv-bash-5.1-p12/bin/bash
