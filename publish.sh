@@ -32,9 +32,9 @@ trap 'rm "$NPM_CONFIG_USERCONFIG"' EXIT
 export NPM_CONFIG_USERCONFIG
 {
   echo "registry=https://registry.npmjs.org/"
-  echo "registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN"
-  echo "@zombiezen:registry=https://npm.pkg.github.com/"
-  echo "@zombiezen:npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN"
+  echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN"
+  echo "@${OWNER}:registry=https://npm.pkg.github.com/"
+  echo "@${OWNER}://npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN"
 } >> "$NPM_CONFIG_USERCONFIG"
 
 npm install
