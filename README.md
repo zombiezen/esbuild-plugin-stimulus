@@ -41,21 +41,21 @@ const app = Application.start();
 app.load(definitions);
 ```
 
-If you are using Typescript, add a [declaration file][] like the following to
+If you are using TypeScript, add a [declaration file][] like the following to
 your project to provide type information for `stimulus:` imports:
 
 ```typescript
 // esbuild-plugin-stimulus.d.ts
 
 declare module 'stimulus:*' {
-  import type { Definition } from 'stimulus';
+  import type { Definition } from '@hotwired/stimulus';
   export const definitions: Definition[];
 }
 ```
 
 [declaration file]: https://www.typescriptlang.org/docs/handbook/modules.html#working-with-other-javascript-libraries
 [esbuild script]: https://esbuild.github.io/getting-started/#build-scripts
-[using webpack]: https://stimulus.hotwire.dev/handbook/installing#using-webpack
+[using webpack]: https://stimulus.hotwire.dev/handbook/installing#using-webpack-helpers
 
 ## License
 
