@@ -31,7 +31,8 @@ jobs:
       run: ./publish.sh
       env:
         OWNER: ${{ github.repository_owner }}
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # Store path obtained with:
         # nix-store -qR "$(nix-build --no-out-link shell.nix)" | grep bash
         NIX_BUILD_SHELL: /nix/store/pbfraw351mksnkp2ni9c4rkc9cpp89iv-bash-5.1-p12/bin/bash

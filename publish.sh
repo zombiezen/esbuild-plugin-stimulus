@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell --pure -i bash --keep OWNER --keep NODE_AUTH_TOKEN shell.nix
+#!nix-shell --pure -i bash --keep OWNER --keep NPM_TOKEN --keep GITHUB_TOKEN shell.nix
 #shellcheck shell=bash
 #
 # Copyright 2022 The esbuild-plugin-stimulus Authors
@@ -25,16 +25,17 @@ if [[ -z "${OWNER:-}" ]]; then
   exit 1
 fi
 
-NODE_AUTH_TOKEN="${NODE_AUTH_TOKEN:-XXXXX-XXXXX-XXXXX-XXXXX}"
+NPM_TOKEN="${NPM_TOKEN:-XXXXX-XXXXX-XXXXX-XXXXX}"
+GITHUB_TOKEN="${GITHUB_TOKEN:-GGGGG-GGGGG-GGGGG-GGGGG}"
 
 NPM_CONFIG_USERCONFIG="$(mktemp)"
 trap 'rm "$NPM_CONFIG_USERCONFIG"' EXIT
 export NPM_CONFIG_USERCONFIG
 {
   echo "registry=https://registry.npmjs.org/"
-  echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN"
+  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
   echo "@${OWNER}:registry=https://npm.pkg.github.com/"
-  echo "@${OWNER}://npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN"
+  echo "@${OWNER}://npm.pkg.github.com/:_authToken=$GITHUB_TOKEN"
 } >> "$NPM_CONFIG_USERCONFIG"
 
 npm install
