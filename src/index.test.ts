@@ -96,6 +96,27 @@ test('hyphens', async () => {
   expect(got).toEqual([{identifier: 'foo-bar', className: 'FooBar'}]);
 });
 
+test('TypeScript', async () => {
+  const got = await listDefinitions({
+    'foo_controller.ts': 'export default class Foo {}',
+  });
+  expect(got).toEqual([{identifier: 'foo', className: 'Foo'}]);
+});
+
+test('jsx', async () => {
+  const got = await listDefinitions({
+    'foo_controller.jsx': 'export default class Foo {}',
+  });
+  expect(got).toEqual([{identifier: 'foo', className: 'Foo'}]);
+});
+
+test('tsx', async () => {
+  const got = await listDefinitions({
+    'foo_controller.tsx': 'export default class Foo {}',
+  });
+  expect(got).toEqual([{identifier: 'foo', className: 'Foo'}]);
+});
+
 describe('directories', () => {
   test('separate with two hyphens', async () => {
     const got = await listDefinitions({

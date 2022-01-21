@@ -5,6 +5,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.2...main
 
+## [Unreleased][]
+
+### Fixed
+
+- Permit `tsx` and `jsx` extensions to be used
+  ([#8](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/8))
+
 ## [0.1.2][] - 2021-09-11
 
 Version 0.1.2 fixes several bugs from the initial release.

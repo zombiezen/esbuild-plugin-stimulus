@@ -22,13 +22,52 @@ import * as path from 'path';
 import { readdir } from 'fs';
 import { promisify } from 'util';
 
+const CONTROLLER_EXTENSIONS = [
+  '.js',
+  '.jsx',
+  '.ts',
+  '.tsx',
+];
+
+const CONTROLLER_SUFFIXES = [
+  '-controller',
+  '_controller',
+];
+
+interface ParsedControllerName {
+  controller: string;
+  module: string;
+}
+
+function parseControllerName(filename: string): ParsedControllerName | null {
+  let base: string | undefined;
+  for (let ext of CONTROLLER_EXTENSIONS) {
+    if (filename.endsWith(ext)) {
+      base = filename.substring(0, filename.length - ext.length);
+      break;
+    }
+  }
+  if (base === undefined) {
+    return null;
+  }
+  for (let suffix of CONTROLLER_SUFFIXES) {
+    if (base.endsWith(suffix)) {
+      return {
+        controller: base.substring(0, base.length - suffix.length).replace(/_/g, '-'),
+        module: base,
+      };
+    }
+  }
+  return null;
+}
+
 export const stimulusPlugin = (): Plugin => ({
   name: 'stimulus',
   setup(build) {
     const namespace = 'stimulus_ns';
 
     build.onResolve({ filter: /^stimulus:./ }, args => {
-      const pathArg = args.path.substr('stimulus:'.length);
+      const pathArg = args.path.substring('stimulus:'.length);
       return {
         path: path.join(args.resolveDir, pathArg.replace(/\//g, path.sep)),
         namespace,
@@ -58,17 +97,11 @@ export const stimulusPlugin = (): Plugin => ({
             ));
             continue;
           }
-          if (ent.name.endsWith('_controller.ts') ||
-            ent.name.endsWith('_controller.js') ||
-            ent.name.endsWith('-controller.js') ||
-            ent.name.endsWith('-controller.ts')) {
-            const controllerName = prefix + ent.name
-              .substr(0, ent.name.length - '_controller.js'.length)
-              .replace(/_/g, '-');
-            const moduleName = ent.name.substr(0, ent.name.length - '.js'.length);
+          const parseResult = parseControllerName(ent.name);
+          if (parseResult) {
             result.push({
-              controllerName,
-              modulePath: moduleDir + '/' + moduleName,
+              controllerName: prefix + parseResult.controller,
+              modulePath: moduleDir + '/' + parseResult.module,
             });
           }
         }
