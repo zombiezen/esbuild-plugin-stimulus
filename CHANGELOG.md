@@ -3,18 +3,24 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-[Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.4...main
+[Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.5...main
 
-## [0.1.4][] - 2022-01-21
+## [0.1.5][] - 2022-01-21
 
-Version 0.1.4 adds support for `.tsx` and `.jsx` file extensions.
+Version 0.1.5 adds support for `.tsx` and `.jsx` file extensions.
 
-[0.1.4]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.1.4
+[0.1.5]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.1.5
 
 ### Added
 
 - Permit `.tsx` and `.jsx` extensions to be used
   ([#8](https://github.com/zombiezen/esbuild-plugin-stimulus/issues/8))
+
+## [0.1.4][] - 2022-01-21
+
+Version 0.1.4 was skipped due to an improper release.
+
+[0.1.4]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.1.4
 
 ## [0.1.3][] - 2022-01-21
 

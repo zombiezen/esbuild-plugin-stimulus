@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-stimulus",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "esbuild plugin for automatically loading Stimulus controllers from a folder",
   "type": "commonjs",
   "main": "./build/index.js",
