@@ -68,9 +68,11 @@ export const stimulusPlugin = (): Plugin => ({
 
     build.onResolve({ filter: /^stimulus:./ }, args => {
       const pathArg = args.path.substring('stimulus:'.length);
+      const resolvedPath = path.join(args.resolveDir, pathArg.replace(/\//g, path.sep));
       return {
-        path: path.join(args.resolveDir, pathArg.replace(/\//g, path.sep)),
+        path: resolvedPath,
         namespace,
+        watchDirs: [resolvedPath],
       };
     });
 
