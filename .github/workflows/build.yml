@@ -19,7 +19,7 @@ on: [push, pull_request]
 jobs:
   test:
     name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: nix-shell --pure --run "set -eo pipefail; source {0}"
@@ -29,9 +29,9 @@ jobs:
       NIX_BUILD_SHELL: /nix/store/pbfraw351mksnkp2ni9c4rkc9cpp89iv-bash-5.1-p12/bin/bash
     steps:
     - name: Install Nix
-      uses: cachix/install-nix-action@v20
+      uses: cachix/install-nix-action@v31
     - name: Check out code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install dependencies
       run: npm install
     - name: Test
