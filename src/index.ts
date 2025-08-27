@@ -68,11 +68,9 @@ export const stimulusPlugin = (): Plugin => ({
 
     build.onResolve({ filter: /^stimulus:./ }, args => {
       const pathArg = args.path.substring('stimulus:'.length);
-      const resolvedPath = path.join(args.resolveDir, pathArg.replace(/\//g, path.sep));
       return {
-        path: resolvedPath,
+        path: path.join(args.resolveDir, pathArg.replace(/\//g, path.sep)),
         namespace,
-        watchDirs: [resolvedPath],
       };
     });
 
@@ -81,7 +79,9 @@ export const stimulusPlugin = (): Plugin => ({
         controllerName: string;
         modulePath: string;
       }
+      const visitedDirs = new Set<string>();
       const walk = async (dir: string, prefix: string, moduleDir: string): Promise<Controller[]> => {
+        visitedDirs.add(dir);
         let files;
         try {
           files = await promisify(readdir)(dir, {withFileTypes: true});
@@ -125,6 +125,7 @@ export const stimulusPlugin = (): Plugin => ({
         contents,
         loader: 'js',
         resolveDir: args.path,
+        watchDirs: Array.from(visitedDirs),
       };
     });
   },
