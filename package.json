@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-stimulus",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "esbuild plugin for automatically loading Stimulus controllers from a folder",
   "type": "commonjs",
   "main": "./build/index.js",
@@ -18,7 +18,7 @@
     "plugin",
     "stimulus"
   ],
-  "author": "Ross Light <ross@zombiezen.com>",
+  "author": "Roxy Light <roxy@zombiezen.com>",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/zombiezen"

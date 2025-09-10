@@ -3,7 +3,18 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-[Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.1.5...main
+[Unreleased]: https://github.com/zombiezen/esbuild-plugin-stimulus/compare/v0.2.0...main
+
+## [0.2.0][] - 2025-09-10
+
+Version 0.2 improves support for esbuild watch mode.
+
+[0.2.0]: https://github.com/zombiezen/esbuild-plugin-stimulus/releases/tag/v0.2.0
+
+### Added
+
+- Trigger rebuilds in watch mode on changes in appropriate directories
+  ([#18](https://github.com/zombiezen/esbuild-plugin-stimulus/pull/18))
 
 ## [0.1.5][] - 2022-01-21
 
